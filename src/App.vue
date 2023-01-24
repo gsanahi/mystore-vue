@@ -1,10 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <n-config-provider :theme="darkTheme">
+    <nav>
+      <router-link to="/">Products</router-link> |
+      <router-link to="/profile">Profile</router-link>
+    </nav>
+    <router-view />
+  </n-config-provider>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import { darkTheme } from "naive-ui";
+import type { GlobalTheme } from "naive-ui";
+
+export default defineComponent({
+  setup() {
+    return {
+      darkTheme,
+      theme: ref<GlobalTheme | null>(null),
+    };
+  },
+});
+</script>
 
 <style>
 #app {
