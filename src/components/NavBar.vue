@@ -76,8 +76,6 @@ export default defineComponent({
 .n-menu {
   background-color: rgb(33, 119, 60);
   padding: 2rem;
-}
-.a {
-  float: left;
+  width: 100%;
 }
 </style>
