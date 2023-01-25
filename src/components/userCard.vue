@@ -1,17 +1,15 @@
 <template>
-  <n-card title="Card with Cover">
+  <n-card title="User profile">
     <template #cover>
-      <img :src="product.images[0]" />
+      <img :src="user.avatar" />
+      <ul>
+        <li :name="user.name">Name</li>
+        <li :email="user.email">Email</li>
+        <li :role="user.role">Role</li>
+      </ul>
     </template>
-    {{ user.name }}
   </n-card>
 </template>
-
-<style scoped>
-.n-card {
-  max-width: 300px;
-}
-</style>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
