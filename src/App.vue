@@ -1,19 +1,22 @@
 <template>
   <n-config-provider :theme="darkTheme">
-    <nav>
-      <router-link to="/">Products</router-link> |
-      <router-link to="/profile">Profile</router-link>
-    </nav>
-    <router-view />
+    <n-layout>
+      <nav-bar />
+      <div class="container">
+        <router-view />
+      </div>
+    </n-layout>
   </n-config-provider>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { darkTheme } from "naive-ui";
+import { darkTheme, NConfigProvider, NLayout } from "naive-ui";
 import type { GlobalTheme } from "naive-ui";
+import NavBar from "./components/NavBar.vue";
 
 export default defineComponent({
+  components: { NavBar, NConfigProvider, NLayout },
   setup() {
     return {
       darkTheme,
@@ -24,24 +27,8 @@ export default defineComponent({
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.container {
+  background-color: rgb(16, 16, 20);
+  padding: 4rem;
 }
 </style>
