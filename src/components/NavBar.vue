@@ -1,5 +1,11 @@
 <template>
-  <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
+  <div>
+    <n-menu
+      v-model:value="activeKey"
+      mode="horizontal"
+      :options="menuOptions"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -65,3 +71,13 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.n-menu {
+  background-color: rgb(33, 119, 60);
+  padding: 2rem;
+}
+.a {
+  float: left;
+}
+</style>
