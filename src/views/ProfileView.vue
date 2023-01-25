@@ -1,11 +1,11 @@
 <template>
   <div>Profile</div>
-  <UserCard :user="user.name"></UserCard>
+  <UserCard :user="user"></UserCard>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import UserCard from "@/components/userCard.vue";
+import UserCard from "@/components/UserCard.vue";
 import { User } from "@/models/users";
 
 export default defineComponent({

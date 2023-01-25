@@ -17,6 +17,7 @@ import {
   UserAlt as UserAlt,
   UserCheck as UserCheck,
 } from "@vicons/fa";
+import { RouterLink } from "vue-router";
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) });
@@ -26,9 +27,9 @@ const menuOptions: MenuOption[] = [
   {
     label: () =>
       h(
-        "a",
+        RouterLink,
         {
-          href: "/",
+          to: { name: "home" },
         },
         "List Products"
       ),
@@ -38,9 +39,9 @@ const menuOptions: MenuOption[] = [
   {
     label: () =>
       h(
-        "a",
+        RouterLink,
         {
-          href: "/profile",
+          to: { name: "profile" },
         },
         "Profile"
       ),
@@ -50,9 +51,9 @@ const menuOptions: MenuOption[] = [
   {
     label: () =>
       h(
-        "a",
+        RouterLink,
         {
-          href: "/login",
+          to: { name: "login" },
         },
         "Login"
       ),

@@ -17,7 +17,7 @@ import { NCard } from "naive-ui";
 import type { User } from "@/models/users";
 
 export default defineComponent({
-  name: "userCard",
+  name: "UserCard",
   props: {
     user: { type: Object as PropType<User>, required: true },
   },

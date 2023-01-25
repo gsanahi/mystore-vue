@@ -13,6 +13,9 @@
         </template>
         {{ product.price }}
       </n-button>
+      <router-link :to="{ name: 'product', params: { id: product.id } }"
+        ><n-button tertiary round type="info">More Info</n-button></router-link
+      >
     </n-space>
   </n-card>
 </template>
