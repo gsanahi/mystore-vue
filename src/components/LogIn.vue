@@ -6,7 +6,6 @@
         :options="options"
         placeholder="Email"
       />
-      {{ email }}
     </div>
     <div class="complete-mail">
       <n-input
@@ -17,6 +16,7 @@
         :maxlength="15"
       />
     </div>
+    <button @click="handleLogin(email, password)">Login</button>
   </div>
 </template>
 
@@ -44,10 +44,10 @@ export default defineComponent({
       }),
     };
   },
+  methods: {
+    handleLogin(email: string, password: string) {
+      this.$store.dispatch("user/login", { email, password });
+    },
+  },
 });
 </script>
-
-{ email: "", options: [{label: "@gmail.com", value: "@gmail.com"}, {label:
-"@mail.com", value: "@mail.com"}] } { email: "a", options: [{label:
-"a@gmail.com", value: "a@gmail.com"}, {label: "a@mail.com", value:
-"a@mail.com"}] }
