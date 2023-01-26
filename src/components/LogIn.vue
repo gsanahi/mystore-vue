@@ -2,22 +2,19 @@
   <div class="container">
     <div class="complete-user">
       <n-auto-complete
-        v-model:value="value"
-        :input-props="{
-          autocomplete: 'disabled',
-        }"
-        :options="options"
-        placeholder="User"
-      />
-    </div>
-    <div class="complete-mail">
-      <n-auto-complete
-        v-model:value="value"
-        :input-props="{
-          autocomplete: 'disabled',
-        }"
+        v-model:value="email"
         :options="options"
         placeholder="Email"
+      />
+      {{ email }}
+    </div>
+    <div class="complete-mail">
+      <n-input
+        v-model:value="password"
+        type="password"
+        show-password-on="mousedown"
+        placeholder="Password"
+        :maxlength="15"
       />
     </div>
   </div>
@@ -25,17 +22,20 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
-import { NAutoComplete } from "naive-ui";
+import { NAutoComplete, NInput } from "naive-ui";
 
 export default defineComponent({
-  components: { NAutoComplete },
+  components: { NAutoComplete, NInput },
   setup() {
-    const valueRef = ref("");
+    const emailRef = ref("");
+    const passRef = ref("");
+
     return {
-      value: valueRef,
+      email: emailRef,
+      password: passRef,
       options: computed(() => {
         return ["@gmail.com", "@mail.com", "@qq.com"].map((suffix) => {
-          const prefix = valueRef.value.split("@")[0];
+          const prefix = emailRef.value.split("@")[0];
           return {
             label: prefix + suffix,
             value: prefix + suffix,
@@ -46,3 +46,8 @@ export default defineComponent({
   },
 });
 </script>
+
+{ email: "", options: [{label: "@gmail.com", value: "@gmail.com"}, {label:
+"@mail.com", value: "@mail.com"}] } { email: "a", options: [{label:
+"a@gmail.com", value: "a@gmail.com"}, {label: "a@mail.com", value:
+"a@mail.com"}] }
