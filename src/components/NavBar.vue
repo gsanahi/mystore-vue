@@ -31,7 +31,7 @@ const menuOptions: MenuOption[] = [
         {
           to: { name: "home" },
         },
-        "List Products"
+        { default: () => "List Products" }
       ),
     key: "home",
     icon: renderIcon(HomeIcon),
@@ -43,7 +43,7 @@ const menuOptions: MenuOption[] = [
         {
           to: { name: "profile" },
         },
-        "Profile"
+        { default: () => "Profile" }
       ),
     key: "profile",
     icon: renderIcon(UserAlt),
@@ -55,7 +55,7 @@ const menuOptions: MenuOption[] = [
         {
           to: { name: "login" },
         },
-        "Login"
+        { default: () => "Login" }
       ),
     key: "login",
     icon: renderIcon(UserCheck),

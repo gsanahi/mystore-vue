@@ -9,10 +9,15 @@
     <n-grid-item><product-card :product="product"></product-card></n-grid-item>
     <n-grid-item><product-card :product="product"></product-card></n-grid-item>
   </n-grid>
+  <div>
+    <footer>
+      <n-pagination v-model:page="page" :page-count="100" />
+    </footer>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { NGrid, NGridItem } from "naive-ui";
 import ProductCard from "@/components/ProductCard.vue";
 import { Product } from "@/models/product";
@@ -49,6 +54,7 @@ export default defineComponent({
 
     return {
       product,
+      page: ref(2),
     };
   },
 });

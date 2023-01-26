@@ -40,9 +40,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.money {
-  background-color: blue;
-}
-</style>

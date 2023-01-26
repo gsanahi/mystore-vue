@@ -1,5 +1,4 @@
 <template>
-  <div>Profile</div>
   <UserCard :user="user"></UserCard>
 </template>
 

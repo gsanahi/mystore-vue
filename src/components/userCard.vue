@@ -1,19 +1,19 @@
 <template>
-  <n-card title="User profile">
-    <template #cover>
-      <img :src="user.avatar" />
+  <div class="card-container">
+    <n-card :title="`${user.name}`">
+      <n-image width="500" :src="user.avatar" />
       <ul>
-        <li :name="user.name">Name</li>
-        <li :email="user.email">Email</li>
-        <li :role="user.role">Role</li>
+        <li>Name: {{ user.name }}</li>
+        <li>Email: {{ user.email }}</li>
+        <li>Role: {{ user.role }}</li>
       </ul>
-    </template>
-  </n-card>
+    </n-card>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { NCard } from "naive-ui";
+import { NCard, NImage } from "naive-ui";
 import type { User } from "@/models/users";
 
 export default defineComponent({
@@ -23,6 +23,18 @@ export default defineComponent({
   },
   components: {
     NCard,
+    NImage,
   },
 });
 </script>
+
+<style scoped>
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.n-card {
+  max-width: 600px;
+}
+</style>
