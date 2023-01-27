@@ -29,6 +29,9 @@ export const user: Module<IUserState, unknown> = {
         throw error;
       }
     },
+    logout({ commit }) {
+      commit("loggedOut");
+    },
   },
   mutations: {
     loginSucceed(state: IUserState, token: string) {

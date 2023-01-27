@@ -19,9 +19,15 @@ import {
 } from "@vicons/fa";
 import { RouterLink } from "vue-router";
 import store from "@/store";
+import router from "@/router"
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) });
+}
+
+function logout() {
+  store.dispatch('user/logout');
+  router.push({name: 'login'})
 }
 
 const menuOptions: MenuOption[] = [
@@ -52,9 +58,9 @@ const menuOptions: MenuOption[] = [
   {
     label: () =>
       h(
-        RouterLink,
+        'a',
         {
-          to: { name: "login" },
+          onClick: logout,
         },
         { default: () => "Logout" }
       ),
