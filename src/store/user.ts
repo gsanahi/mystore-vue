@@ -1,12 +1,13 @@
 import authService from "@/services/authService";
-import { ErrorTypes } from "vue-router";
 import type { Module } from "vuex";
 
 interface IUserState {
   accessToken: string | null;
 }
 
-const initialState: IUserState = { accessToken: null };
+const initialState: IUserState = {
+  accessToken: sessionStorage.getItem("accessToken"),
+};
 
 type LoginFields = { email: string; password: string };
 
@@ -33,10 +34,15 @@ export const user: Module<IUserState, unknown> = {
     loginSucceed(state: IUserState, token: string) {
       console.log("[mutation] Login succeed");
       state.accessToken = token;
+      sessionStorage.setItem("accessToken", token);
     },
     loginFailed(state) {
       console.log("[mutation] Login failed");
+    },
+    loggedOut(state) {
+      console.log("[mutation] Logged out");
       state.accessToken = null;
+      sessionStorage.clear();
     },
   },
   getters: {
