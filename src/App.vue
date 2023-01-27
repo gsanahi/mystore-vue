@@ -32,6 +32,9 @@ body {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-top: 40px;
   padding-right: 15px;
   padding-left: 15px;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isLoggedIn">
     <n-menu
       v-model:value="activeKey"
       mode="horizontal"
@@ -18,6 +18,7 @@ import {
   UserCheck as UserCheck,
 } from "@vicons/fa";
 import { RouterLink } from "vue-router";
+import store from "@/store";
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) });
@@ -65,9 +66,12 @@ const menuOptions: MenuOption[] = [
 export default defineComponent({
   components: { NMenu },
   setup() {
+    const isLoggedIn = store.getters["user/isLoggedIn"];
+    
     return {
       activeKey: ref<string | null>(null),
       menuOptions,
+      isLoggedIn,
     };
   },
 });
