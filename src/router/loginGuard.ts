@@ -1,7 +1,8 @@
 import store from "@/store";
 import { RouteLocation } from "vue-router";
 
-const loginGuard = (to: RouteLocation, from: RouteLocation, next: any) => {
+// eslint-disable-next-line
+const loginGuard = (_to: RouteLocation, _from: RouteLocation, next: any) => {
   const isLoggedIn: boolean = store.getters["user/isLoggedIn"];
   if (isLoggedIn) {
     next();

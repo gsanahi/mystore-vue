@@ -39,7 +39,7 @@ export const user: Module<IUserState, unknown> = {
       state.accessToken = token;
       sessionStorage.setItem("accessToken", token);
     },
-    loginFailed(state) {
+    loginFailed() {
       console.log("[mutation] Login failed");
     },
     loggedOut(state) {

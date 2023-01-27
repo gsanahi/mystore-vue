@@ -1,17 +1,17 @@
-import axios from 'axios';
+import axios from "axios";
 
 type LoginResponse = { access_token: string; refresh_token: string };
 
 class AuthService {
   login(email: string, password: string): Promise<string> {
     return axios
-            .post<LoginResponse>("https://api.escuelajs.co/api/v1/auth/login", {
-            email,
-            password,
-          })
-          .then((response) => {
-            return response.data.access_token
-          });
+      .post<LoginResponse>("https://api.escuelajs.co/api/v1/auth/login", {
+        email,
+        password,
+      })
+      .then((response) => {
+        return response.data.access_token;
+      });
   }
 }
 
