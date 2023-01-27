@@ -1,15 +1,13 @@
 import authService from "@/services/authService";
-import axios from "axios";
 import type { Module } from "vuex";
 
 interface IUserState {
-  isLoggedIn: boolean;
+  accessToken: string | null;
 }
 
-const initialState = { isLoggedIn: false };
+const initialState: IUserState = { accessToken: null };
 
 type LoginFields = { email: string; password: string };
-
 
 export const user: Module<IUserState, unknown> = {
   namespaced: true,
@@ -18,10 +16,10 @@ export const user: Module<IUserState, unknown> = {
     async login({ commit }, { email, password }: LoginFields) {
       console.log("[action] Loggin in");
       console.log({ email, password });
-      
+
       try {
-        const token = await authService.login(email, password)
-        commit("loginSucceed");
+        const token = await authService.login(email, password);
+        commit("loginSucceed", token);
       } catch (error) {
         // TODO: Manejar error
         commit("loginFailed");
@@ -29,13 +27,13 @@ export const user: Module<IUserState, unknown> = {
     },
   },
   mutations: {
-    loginSucceed(state) {
+    loginSucceed(state: IUserState, token: string) {
       console.log("[mutation] Login succeed");
-      state.isLoggedIn = true;
+      state.accessToken = token;
     },
     loginFailed(state) {
       console.log("[mutation] Login failed");
-      state.isLoggedIn = false;
+      state.accessToken = null;
     },
   },
 };
