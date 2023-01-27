@@ -36,4 +36,9 @@ export const user: Module<IUserState, unknown> = {
       state.accessToken = null;
     },
   },
+  getters: {
+    isLoggedIn(state: IUserState): boolean {
+      return state.accessToken != null;
+    },
+  },
 };

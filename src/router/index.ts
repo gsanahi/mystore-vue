@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import ProductListView from "../views/ProductListView.vue";
+import loginGuard from "./loginGuard";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
     component: ProductListView,
+    beforeEnter: [loginGuard],
   },
   {
     path: "/profile",
@@ -15,6 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "@/views/ProfileView.vue"),
+    beforeEnter: [loginGuard],
   },
   {
     path: "/login",
@@ -31,6 +34,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     component: () =>
       import(/* webpackChunkName: "about" */ "@/views/ProductView.vue"),
+    beforeEnter: [loginGuard],
   },
 ];
 
