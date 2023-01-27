@@ -1,4 +1,5 @@
 import authService from "@/services/authService";
+import { ErrorTypes } from "vue-router";
 import type { Module } from "vuex";
 
 interface IUserState {
@@ -20,9 +21,11 @@ export const user: Module<IUserState, unknown> = {
       try {
         const token = await authService.login(email, password);
         commit("loginSucceed", token);
+        return token;
       } catch (error) {
         // TODO: Manejar error
         commit("loginFailed");
+        throw error;
       }
     },
   },

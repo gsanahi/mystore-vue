@@ -14,8 +14,8 @@ import { NIcon, NMenu } from "naive-ui";
 import type { MenuOption } from "naive-ui";
 import {
   Home as HomeIcon,
-  UserAlt as UserAlt,
-  UserCheck as UserCheck,
+  UserAlt as UserAltIcon,
+  SignOutAlt as SignOutAltIcon,
 } from "@vicons/fa";
 import { RouterLink } from "vue-router";
 import store from "@/store";
@@ -47,7 +47,7 @@ const menuOptions: MenuOption[] = [
         { default: () => "Profile" }
       ),
     key: "profile",
-    icon: renderIcon(UserAlt),
+    icon: renderIcon(UserAltIcon),
   },
   {
     label: () =>
@@ -56,22 +56,24 @@ const menuOptions: MenuOption[] = [
         {
           to: { name: "login" },
         },
-        { default: () => "Login" }
+        { default: () => "Logout" }
       ),
-    key: "login",
-    icon: renderIcon(UserCheck),
+    key: "logout",
+    icon: renderIcon(SignOutAltIcon),
   },
 ];
 
 export default defineComponent({
   components: { NMenu },
+  computed: {
+    isLoggedIn() {
+      return store.getters["user/isLoggedIn"];
+    }
+  },
   setup() {
-    const isLoggedIn = store.getters["user/isLoggedIn"];
-    
     return {
       activeKey: ref<string | null>(null),
-      menuOptions,
-      isLoggedIn,
+      menuOptions
     };
   },
 });

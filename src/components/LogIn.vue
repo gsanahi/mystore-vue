@@ -48,7 +48,7 @@ export default defineComponent({
   },
   methods: {
     handleLogin(email: string, password: string) {
-      this.$store.dispatch("user/login", { email, password });
+      this.$store.dispatch("user/login", { email, password }).then(() => this.$router.push({name: 'home'}));
     },
   },
 });
