@@ -1,32 +1,32 @@
 <template>
-  <UserCard :user="user"></UserCard>
+  <UserCard v-if="user != null" :user="user"></UserCard>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import UserCard from "@/components/UserCard.vue";
 import { User } from "@/models/users";
+import userService from "@/services/userService";
 
 export default defineComponent({
   name: "userCard",
   components: {
     UserCard,
   },
-  setup() {
-    const user: User = {
-      id: 1,
-      email: "john@mail.com",
-      password: "changeme",
-      name: "Jhon",
-      role: "customer",
-      avatar: "https://api.lorem.space/image/face?w=640&h=480&r=3214",
-      creationAt: "2023-01-24T21:13:17.000Z",
-      updatedAt: "2023-01-24T21:13:17.000Z",
-    };
-
+  data(): { user: User | null } {
     return {
-      user,
+      user: null,
     };
+  },
+  methods: {
+    async fetchUser() {
+      const accessToken = this.$store.getters["user/accessToken"];
+      const user = await userService.getUser(accessToken);
+      this.user = user;
+    },
+  },
+  mounted() {
+    this.fetchUser();
   },
 });
 </script>
