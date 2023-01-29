@@ -1,7 +1,14 @@
 <template>
   <n-card :title="product.title" hoverable>
     <template #cover>
-      <img :src="product.images[0]" />
+      <n-carousel show-arrow>
+        <img
+          v-for="img in product.images"
+          :key="img"
+          class="carousel-img"
+          :src="img"
+        />
+      </n-carousel>
     </template>
     {{ product.description }}
     <n-space>
@@ -19,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { NButton, NCard, NSpace, NIcon } from "naive-ui";
+import { NButton, NCard, NCarousel, NSpace, NIcon } from "naive-ui";
 import { MoneyBillWave as MoneyBillWave } from "@vicons/fa";
 import type { Product } from "@/models/product";
 
@@ -31,9 +38,16 @@ export default defineComponent({
   components: {
     NButton,
     NCard,
+    NCarousel,
     NSpace,
     NIcon,
     MoneyBillWave,
   },
 });
 </script>
+
+<style scoped>
+.n-card {
+  max-width: 40%;
+}
+</style>

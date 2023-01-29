@@ -6,6 +6,7 @@
           v-model:value="email"
           :options="options"
           placeholder="Email"
+          required="true"
         />
       </div>
       <div class="form-group">
@@ -17,7 +18,15 @@
           :maxlength="15"
         />
       </div>
-      <n-button strong secondary block round type="primary" @click="handleLogin(email, password)">Login</n-button>
+      <n-button
+        strong
+        secondary
+        block
+        round
+        type="primary"
+        @click="handleLogin(email, password)"
+        >Login</n-button
+      >
     </div>
   </n-card>
 </template>
@@ -48,7 +57,9 @@ export default defineComponent({
   },
   methods: {
     handleLogin(email: string, password: string) {
-      this.$store.dispatch("user/login", { email, password }).then(() => this.$router.push({name: 'home'}));
+      this.$store
+        .dispatch("user/login", { email, password })
+        .then(() => this.$router.push({ name: "home" }));
     },
   },
 });
@@ -66,7 +77,8 @@ export default defineComponent({
   flex-direction: column;
 }
 
-.form-group, .n-button {
+.form-group,
+.n-button {
   margin: 1rem;
   width: 60%;
 }
