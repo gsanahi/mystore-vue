@@ -3,7 +3,9 @@
     <template #cover>
       <img :src="product.images[0]" />
     </template>
-    {{ product.description }}
+    <p class="description">
+      {{ product.description }}
+    </p>
     <n-space>
       <n-button size="large">
         <template #icon>
@@ -11,12 +13,12 @@
             <MoneyBillWave />
           </n-icon>
         </template>
-        {{ product.price }}
+        ${{ product.price }}
       </n-button>
-      <router-link :to="{ name: 'product', params: { id: product.id } }"
-        ><n-button tertiary round type="info">More Info</n-button></router-link
-      >
     </n-space>
+    <router-link :to="{ name: 'product', params: { id: product.id } }"
+      ><n-button tertiary round type="info">More Info</n-button></router-link
+    >
   </n-card>
 </template>
 
@@ -40,3 +42,27 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.n-space {
+  margin: 1rem 0;
+}
+
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.n-card-header__main {
+  height: 58px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+</style>

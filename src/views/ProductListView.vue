@@ -17,10 +17,10 @@
   <div>
     <n-grid
       v-if="products.length"
-      cols="2 m:4 l:5"
+      cols="2 m:4"
       responsive="screen"
       :x-gap="24"
-      :y-gap="24"
+      :y-gap="36"
     >
       <n-grid-item v-for="product in products" :key="product.id"
         ><product-card :product="product"></product-card
@@ -62,7 +62,7 @@ import ProductCard from "@/components/ProductCard.vue";
 import { Product } from "@/models/product";
 import productsService from "@/services/productsService";
 
-const LIMIT = 5;
+const LIMIT = 8;
 
 export default defineComponent({
   name: "ProductList",

@@ -1,5 +1,8 @@
 <template>
   <n-card :title="product.title" hoverable>
+    <div class="category-tag">
+      <category-tag>{{ product.category.name }}</category-tag>
+    </div>
     <template #cover>
       <n-carousel show-arrow>
         <img
@@ -18,7 +21,7 @@
             <MoneyBillWave />
           </n-icon>
         </template>
-        {{ product.price }}
+        ${{ product.price }}
       </n-button>
     </n-space>
   </n-card>
@@ -28,6 +31,7 @@
 import { defineComponent, PropType } from "vue";
 import { NButton, NCard, NCarousel, NSpace, NIcon } from "naive-ui";
 import { MoneyBillWave as MoneyBillWave } from "@vicons/fa";
+import CategoryTag from "@/components/CategoryTag.vue";
 import type { Product } from "@/models/product";
 
 export default defineComponent({
@@ -42,6 +46,7 @@ export default defineComponent({
     NSpace,
     NIcon,
     MoneyBillWave,
+    CategoryTag,
   },
 });
 </script>
@@ -49,5 +54,14 @@ export default defineComponent({
 <style scoped>
 .n-card {
   max-width: 40%;
+}
+
+.category-tag {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.n-space {
+  margin-top: 1rem;
 }
 </style>
