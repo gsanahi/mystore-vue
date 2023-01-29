@@ -2,13 +2,17 @@
   <div class="input-container">
     <n-input-group>
       <n-input
-        :style="{ width: '50%' }"
+        :style="{ width: '100%' }"
         placeholder="Buscar productos"
         v-model:value="search"
         @keyup.enter="onSearch"
+        :status="searchStatus"
       />
-      <n-button @click="onSearch" type="primary"> Search </n-button>
+      <n-button @click="onSearch" :type="searchStatus"> Search </n-button>
     </n-input-group>
+    <n-alert v-if="searchStatus === 'error'" title="Error" type="error">
+      Se requiere un mínimo de 3 caracteres para la búsqueda
+    </n-alert>
   </div>
   <div>
     <n-grid
@@ -45,6 +49,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from "vue";
 import {
+  NAlert,
   NButton,
   NInput,
   NInputGroup,
@@ -62,6 +67,7 @@ const LIMIT = 5;
 export default defineComponent({
   name: "ProductList",
   components: {
+    NAlert,
     NButton,
     NInput,
     NInputGroup,
@@ -79,8 +85,9 @@ export default defineComponent({
   },
   setup() {
     return {
-      search: ref(""),
       page: ref(1),
+      search: ref(""),
+      searchStatus: ref<"success" | "error">("success"),
     };
   },
   methods: {
@@ -93,8 +100,13 @@ export default defineComponent({
       this.products = products;
     },
     onSearch() {
-      this.page = 1;
-      this.fetchProducts();
+      if (this.search.length != 0 && this.search.length < 3) {
+        this.searchStatus = "error";
+      } else {
+        this.searchStatus = "success";
+        this.page = 1;
+        this.fetchProducts();
+      }
     },
   },
   mounted() {
@@ -112,8 +124,6 @@ export default defineComponent({
 .input-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   margin: 2rem 0;
 }
@@ -121,5 +131,11 @@ export default defineComponent({
 .n-result,
 .n-pagination {
   margin: 6rem;
+}
+
+.n-alert {
+  margin: 2rem 0;
+  border-radius: 8px;
+  max-width: 30%;
 }
 </style>
