@@ -23,10 +23,16 @@
       ></n-grid-item>
     </n-grid>
     <n-result
+      v-else-if="page === 1"
+      status="500"
+      title="No se encontraron productos"
+      description="No se encontraron productos prueba buscando otro."
+    ></n-result>
+    <n-result
       v-else
       status="404"
       title="No hay mas productos"
-      description="No se encontraron más productos, prueba yendo a otra página o buscando otra cosa."
+      description="No se encontraron más productos, prueba yendo a otra página o buscando otro producto."
     >
     </n-result>
   </div>
