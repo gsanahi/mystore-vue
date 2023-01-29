@@ -10,13 +10,18 @@ class ProductsService {
 
   oneProduct(id: number): Promise<Product> {
     return axios
-      .get<Product>("https://api.escuelajs.co/api/v1/products/" + id)
+      .get<Product>(`https://api.escuelajs.co/api/v1/products/${id}`)
       .then((response) => response.data);
   }
-  findProducts(search: string): Promise<Product[]> {
+
+  findProducts(
+    search: string,
+    offset: number,
+    limit: number
+  ): Promise<Product[]> {
     return axios
       .get<Product[]>(
-        `https://api.escuelajs.co/api/v1/products/?title=${search}&offset=10&limit=10`
+        `https://api.escuelajs.co/api/v1/products/?title=${search}&offset=${offset}&limit=${limit}`
       )
       .then((response) => response.data);
   }
