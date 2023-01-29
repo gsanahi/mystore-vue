@@ -87,7 +87,7 @@ export default defineComponent({
 
 <style scoped>
 .n-menu {
-  background-color: rgb(33, 119, 60);
+  background-color: rgb(69, 197, 109);
   padding: 2rem;
   width: 100%;
 }
